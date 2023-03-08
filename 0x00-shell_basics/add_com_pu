@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m 'Another everyday commit'
+git commit -m 'Display current director long with user /id and hidden'
 git push
