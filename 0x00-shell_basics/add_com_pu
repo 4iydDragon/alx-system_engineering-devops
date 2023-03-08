@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m 'Create a script that creates a directory named my_first_directory in the /tmp/ directory.'
+git commit -m 'Move the file betty from /tmp/ to /tmp/my_first_directory'
 git push
