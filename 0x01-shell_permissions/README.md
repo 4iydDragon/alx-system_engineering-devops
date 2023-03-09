@@ -1,1 +1,1 @@
-this project is for shell permissions
+on my second journey
