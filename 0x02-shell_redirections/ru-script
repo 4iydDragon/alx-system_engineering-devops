@@ -3,3 +3,4 @@ echo -e
 '#!/bin/bash\necho -e 
 'Hello, World\n'
  > 0-hello_world
+ > 0-hello_world
