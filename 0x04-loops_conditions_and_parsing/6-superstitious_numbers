@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
-# This script displays numbers from 1 to 20.
-ntimes=0
-while [ $ntimes -lt 20 ]
+# A Bash script that displays numbers from 1 to 20 and after 4 = 'bad luck from China', after 9 = 'bad luck from Japan' and after 17 = 'bad luck from Italy'
+
+n=0
+
+while (( n <= 19 ))
 do
-    ntimes=$(( ntimes + 1 ))
-    echo $ntimes
-
-    case $ntimes in
-        4)
-        echo "bad luck from China"
-        ;;
-
-        9)
-        echo "bad luck from Japan"
-        ;;
-
-        17)
-        echo "bad luck from Italy"
-        ;;
-    esac
+  ((n++))
+  case $n in
+   "4") echo -e "$n\nbad luck from China";;
+   "9") echo -e "$n\nbad luck from Japan";;
+   "17") echo -e "$n\nbad luck from Italy";;
+   *) echo $n;;
+  esac
 done

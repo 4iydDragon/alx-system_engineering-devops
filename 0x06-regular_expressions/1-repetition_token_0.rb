@@ -1,14 +1,3 @@
 #!/usr/bin/env ruby
 
-# Accept the argument from the command line
-input = ARGV[0]
-
-# Define the regular expression to match the cases
-regex = (/hbt{2,5}n/)
-
-# Use the regular expression to find matches
-matches = input.scan(regex)
-
-# Print the matches
-puts matches
-
+puts ARGV[0].scan(/hbt{2,5}n/).join

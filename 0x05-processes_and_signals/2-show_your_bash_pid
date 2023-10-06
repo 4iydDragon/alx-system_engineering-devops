@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# Displays lines containing the bash word from a list of currently running proces
-ps -auxf | grep bash
+# A Bash script that displays lines containing the bash word, allowing to easily get the PID of your Bash process.
+
+ps -aux |grep bash
