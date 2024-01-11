@@ -1,16 +1,16 @@
-frontend evahaudi_https_frontend
-    bind *:443 ssl crt /etc/letsencrypt/live/www.evah-audi.tech/fullchain.pem
+frontend manu_https_frontend
+    bind *:443 ssl crt /etc/letsencrypt/live/www.sol-luna.tech/fullchain.pem
     mode http
-    default_backend evahaudi_backend
+    default_backend koiluk_backend
     timeout client 30s
 
-frontend evah_https_frontend
-    bind *:443 ssl crt /etc/letsencrypt/live/www.evah-audi.tech/fullchain.pem
+frontend manu_https_frontend
+    bind *:443 ssl crt /etc/letsencrypt/live/www.sol-luna.tech/fullchain.pem
     mode http
-    default_backend audi_backend
+    default_backend koiluk_backend
     timeout client 30s
 
-backend evahaudi_backend
+backend koiluk_backend
     balance roundrobin
     mode http
     option http-server-close
@@ -21,10 +21,10 @@ backend evahaudi_backend
     timeout connect 5s
    
 
-backend audi_backend
+backend koiluk_backend
     balance roundrobin
     mode http
-    server 333119-web-01 35.175.128.0:80 check
-    server 333119-web-02 100.25.4.246:80 check
+    server 333119-web-01 52.91.119.153:80 check
+    server 333119-web-02 54.237.43.107:80 check
     timeout server 30s
     timeout connect 5s
