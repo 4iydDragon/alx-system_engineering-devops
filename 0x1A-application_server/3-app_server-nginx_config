@@ -1,6 +1,9 @@
-erver {
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
+    # Use IP of server as domain name
+    server_name 52.91.119.153;
+    # Customize HTTP response header
     add_header X-Served-By 333098-web-01;
     root   /var/www/html;
     index  index.html index.htm;
@@ -8,6 +11,7 @@ erver {
         alias /data/web_static/current;
         index index.html index.htm;
     }
+    # Serve /airbnb-onepage/ route from AirBnB_clone_v2
     location /airbnb-onepage/ {
         proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
         proxy_set_header Host $host;
