@@ -1,33 +1,41 @@
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    # Use IP of server as domain name
-    server_name 52.91.119.153;
-    # Customize HTTP response header
-    add_header X-Served-By 333098-web-01;
-    root   /var/www/html;
-    index  index.html index.htm;
-    location /hbnb_static {
-        alias /data/web_static/current;
+        listen 80 default_server;
+        listen [::]:80 ipv6only=on default_server;
+
+        # Use IP of server as domain name
+        server_name localhost;
+
+        # Customize HTTP response header
+        root /var/www/html;
+
+        location /hbnb_static/ {
+                alias /data/web_static/current/;
+                autoindex off;
+        }
+
         index index.html index.htm index.nginx-debian.html;
-    }
-    # Serve /airbnb-onepage/ route from AirBnB_clone_v2
-    location /airbnb-onepage/ {
-        proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-    location /airbnb-dynamic/number_odd_or_even/ {
-        include proxy_params;
-        proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
-    }
-    location /redirect_me {
-        return 301 http://github.com/4iydDragon/;
-    }
-    error_page 404 /404.html;
-    location /404 {
-      root /var/www/html;
-      internal;
-    }
+
+        # Serve /airbnb-onepage/ route from AirBnB_clone_v2
+        location /airbnb-onepage/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
+        }
+
+        # Serve /airbnb-dynamic/number_odd_or_even/ route from AirBnB_clone_v2
+        location /airbnb-dynamic/number_odd_or_even/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
+        }
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        rewrite ^/redirect_me https://github.com/4iydDragon permanent;
+
+        error_page 404 /404.html;
+
+        location = /404.html {
+                root /var/wwww/html;
+                internal;
+        }
+}
